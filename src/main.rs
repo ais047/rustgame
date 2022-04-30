@@ -1,9 +1,17 @@
-fn main() {
-    println!("Hello, world!");
-    // gamestate = init game state
-    // input system
-    // ai system
-    // physics system
-    // render system
-    // audio system
+use rltk::{Rltk, GameState};
+
+struct State {}
+impl GameState for State {
+    fn tick(&mut self, ctx : &mut Rltk) {
+        ctx.cls();
+        ctx.print(1,1, "Hello Rust world")
+    }
+}
+fn main() -> rltk::BError {
+    use rltk::RltkBuilder;
+    let context = RltkBuilder::simple80x50()
+        .with_title("Rougelink Tutorial")
+        .build()?;
+    let gs = State{};
+    rltk::main_loop(context, gs)
 }
